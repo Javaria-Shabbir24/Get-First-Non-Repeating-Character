@@ -70,5 +70,60 @@ public class Q2Assignment2SCD {
         System.out.println("1.Add Element in Stream\n2.Get First Non-Repeating Character from Stream");
         System.out.println("3.Print the Stream\n4.Exit");
     }
-    
+    public static void main(String[] args)
+    {
+        FirstNonRepeatingStream f1=new FirstNonRepeatingStream();
+        Scanner input=new Scanner(System.in);
+        try
+        {
+            while(true)
+            {
+                menu();
+                System.out.print("Choose an option: ");
+                if(input.hasNextInt())
+                {
+                    int option=input.nextInt();
+                    if(option==1)
+                    {
+                        System.out.print("Enter the character: ");
+                        char c=input.next().charAt(0);
+                        if(!Character.isLetter(c))
+                        {
+                             throw new InvalidInputException("Invalid Input Exception");
+                        }
+                        else
+                        {
+                        f1.add(c);
+                        }
+                    }
+                    else if(option==2)
+                    {
+                        char x=f1.GetFirstNonRepeating();
+                        System.out.println("The First Non Repeating Element is : "+x);
+                    }
+                    else if(option==3)
+                    {
+                        f1.PrintStream();
+                    }
+                    else if(option==4)
+                    {
+                        System.out.println("Program Exited!");
+                        break;
+                    }
+                    else
+                    {
+                         throw new InvalidInputException("Invalid Input Exception");
+                    }
+                }
+                else
+                {
+                    throw new InvalidInputException("Invalid Input Exception");
+                }
+            }
+        }
+        catch(InvalidInputException e)
+        {
+            System.out.println("Exception Message: "+e.getMessage());
+        }
+    }
 }
